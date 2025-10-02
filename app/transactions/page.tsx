@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { TransactionList } from '@/components/transactions/TransactionList';
+import { TransactionList } from '@/components/features/transactions/TransactionList';
 
 type Transaction = {
   id: string;

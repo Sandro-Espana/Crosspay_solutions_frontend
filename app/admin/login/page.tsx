@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { adminLogin } from '@/lib/api';
 import { saveToken } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
-import Navbar from '@/components/Navbar';
-import HexBackground from '@/components/HexBackground';
+import Navbar from '@/components/layout/Navbar';
+import HexBackground from '@/components/layout/HexBackground';
 import Badge from '@/components/Badge';
 
 export default function AdminLoginPage() {

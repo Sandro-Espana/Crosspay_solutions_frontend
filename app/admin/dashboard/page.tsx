@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
-import Navbar from '@/components/Navbar';
-import HexBackground from '@/components/HexBackground';
+import Navbar from '@/components/layout/Navbar';
+import HexBackground from '@/components/layout/HexBackground';
 import Badge from '@/components/Badge';
 import TransactionsTable from '@/components/TransactionsTable';
 import { getAdminTransactions, Transaction } from '@/lib/api';

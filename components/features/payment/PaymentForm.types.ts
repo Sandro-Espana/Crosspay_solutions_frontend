@@ -1,5 +1,7 @@
+// components/features/payment/PaymentForm.types.ts
 import * as yup from 'yup';
 
+// 1. VALIDACIONES DEL FORMULARIO DE PAGO
 export type PaymentFormData = {
   amount: number;
   currency: 'USD' | 'COP';
@@ -11,11 +13,12 @@ export type PaymentFormData = {
   cvv: string; // 3-4 digits
 };
 
-const paymentSchema: yup.ObjectSchema<PaymentFormData> = yup.object({
+export const paymentSchema: yup.ObjectSchema<PaymentFormData> = yup.object({
   amount: yup
     .number()
     .typeError('El monto debe ser un número')
     .positive('El monto debe ser positivo')
+    .integer('El monto debe ser un número entero') 
     .required('Monto es requerido'),
   currency: yup
     .mixed<PaymentFormData['currency']>()
@@ -29,7 +32,7 @@ const paymentSchema: yup.ObjectSchema<PaymentFormData> = yup.object({
     .required('Tipo de documento es requerido'),
   card_number: yup
     .string()
-    .matches(/^[0-9]{16,19}$/, 'Número de tarjeta inválido (16-19 dígitos)')
+    .matches(/^[0-9]{16,19}$/, 'Número de tarjeta inválido (solo dígitos, 16-19)')
     .required('Número de tarjeta es requerido'),
   expiry_date: yup
     .string()
@@ -37,6 +40,12 @@ const paymentSchema: yup.ObjectSchema<PaymentFormData> = yup.object({
     .required('Fecha de vencimiento es requerida'),
   cvv: yup
     .string()
-    .matches(/^[0-9]{3,4}$/i, 'CVV inválido')
+    .matches(/^[0-9]{3,4}$/i, 'CVV inválido (solo dígitos)')
     .required('CVV es requerido'),
 }).required();
+
+export interface PaymentFormProps {
+  onSubmit: (data: PaymentFormData) => void;
+  loading: boolean;
+  error?: string;
+}
